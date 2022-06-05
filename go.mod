@@ -1,4 +1,4 @@
-module mygin
+module snowgo-gin
 
 go 1.18
 

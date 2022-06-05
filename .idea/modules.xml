@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/mygin.iml" filepath="$PROJECT_DIR$/.idea/mygin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/snowgo-gin.iml" filepath="$PROJECT_DIR$/.idea/snowgo-gin.iml" />
     </modules>
   </component>
 </project>
