@@ -1,14 +1,17 @@
 package classes
 
-import "github.com/gin-gonic/gin"
+import (
+	"snowgo-gin/src/goft"
+
+	"github.com/gin-gonic/gin"
+)
 
 type IndexClass struct {
-	*gin.Engine //this is what's gin new() get
 }
 
 // NewIndexClass  is so-called constructor
-func NewIndexClass(e *gin.Engine) *IndexClass {
-	return &IndexClass{Engine: e}
+func NewIndexClass() *IndexClass {
+	return &IndexClass{}
 }
 
 //This is our business method. The function name is optional
@@ -21,6 +24,6 @@ func (this *IndexClass) GetIndex() gin.HandlerFunc {
 }
 
 // Build shadow this so that main func is clear
-func (this *IndexClass) Build() {
-	this.Handle("GET", "/", this.GetIndex())
+func (this *IndexClass) Build(goft *goft.Goft) {
+	goft.Handle("GET", "/", this.GetIndex())
 }
