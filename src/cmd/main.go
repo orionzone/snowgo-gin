@@ -3,6 +3,7 @@ package main
 import (
 	"snowgo-gin/src/classes"
 	"snowgo-gin/src/goft"
+	. "snowgo-gin/src/middlewares"
 )
 
 func main() {
@@ -12,6 +13,7 @@ func main() {
 	//classes.NewUserClass(r).Build()
 	//r.Run(":8080")
 	goft.NewGoft().
+		Attach(NewUserMid()).
 		Mount("v1", classes.NewIndexClass()).
 		Mount("v2", classes.NewUserClass()).
 		Launch()

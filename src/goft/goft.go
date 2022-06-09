@@ -17,6 +17,21 @@ func (this *Goft) Handle(httpMethod, relativePath string, handlers ...gin.Handle
 	this.g.Handle(httpMethod, relativePath, handlers...)
 	return this
 }
+
+//代表加入中间件
+func (this *Goft) Attach(f Fairing) *Goft {
+	this.Use(func(context *gin.Context) {
+		err := f.OnRequest()
+		if err != nil {
+			context.AbortWithStatusJSON(
+				400, gin.H{"error": err.Error()})
+		} else {
+			context.Next()
+		}
+
+	})
+	return this
+}
 func (this *Goft) Mount(group string, classes ...IClass) *Goft {
 	this.g = this.Group(group)
 	for _, class := range classes {
