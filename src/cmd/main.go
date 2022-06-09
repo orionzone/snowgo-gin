@@ -12,5 +12,7 @@ func main() {
 	//classes.NewUserClass(r).Build()
 	//r.Run(":8080")
 	goft.NewGoft().
-		Mount(classes.NewIndexClass(), classes.NewUserClass()).Launch()
+		Mount("v1", classes.NewIndexClass()).
+		Mount("v2", classes.NewUserClass()).
+		Launch()
 }
