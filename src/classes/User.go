@@ -12,13 +12,10 @@ type UserClass struct {
 func NewUserClass() *UserClass {
 	return &UserClass{}
 }
-func (this *UserClass) UserList() gin.HandlerFunc {
-	return func(context *gin.Context) {
-		context.JSON(200, gin.H{
-			"result": "success",
-		})
-	}
+func (this *UserClass) UserList(ctx *gin.Context) string {
+
+	return "abc"
 }
 func (this *UserClass) Build(goft *goft.Goft) {
-	goft.Handle("GET", "/user", this.UserList())
+	goft.Handle("GET", "/user", this.UserList)
 }

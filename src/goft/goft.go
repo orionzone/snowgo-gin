@@ -13,15 +13,20 @@ func NewGoft() *Goft {
 func (this *Goft) Launch() {
 	this.Run(":8080")
 }
-func (this *Goft) Handle(httpMethod, relativePath string, handlers ...gin.HandlerFunc) *Goft {
-	this.g.Handle(httpMethod, relativePath, handlers...)
+func (this *Goft) Handle(httpMethod, relativePath string, handler interface{}) *Goft {
+	if h, ok := handler.(func(ctx *gin.Context) string); ok {
+		this.g.Handle(httpMethod, relativePath, func(context *gin.Context) {
+			context.String(200, h(context))
+		})
+	}
+
 	return this
 }
 
 //代表加入中间件
 func (this *Goft) Attach(f Fairing) *Goft {
 	this.Use(func(context *gin.Context) {
-		err := f.OnRequest()
+		err := f.OnRequest(context)
 		if err != nil {
 			context.AbortWithStatusJSON(
 				400, gin.H{"error": err.Error()})

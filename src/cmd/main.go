@@ -15,6 +15,6 @@ func main() {
 	goft.NewGoft().
 		Attach(NewUserMid()).
 		Mount("v1", classes.NewIndexClass()).
-		Mount("v2", classes.NewUserClass()).
+		Mount("v1", classes.NewUserClass()).
 		Launch()
 }
